@@ -110,7 +110,14 @@ public class SimpleLinkedList<T> {
         }
         else {
             res = top.data;
-            top = top.next;
+
+            if (size() > 1) {
+                top = top.next;
+            }
+            else {
+                top = null;
+                bot = null;
+            }
             -- n;
         }
         return res;
@@ -123,13 +130,20 @@ public class SimpleLinkedList<T> {
         }
         else {
             Node ptr = top;
-            while (ptr.next.next != null) {
-                ptr = ptr.next;
+            if (size() > 1) {
+                while (ptr.next.next != null) {
+                    ptr = ptr.next;
+                }
+                res = ptr.next.data;
+                ptr.next = ptr.next.next;
+                bot = ptr;
+                -- n;
             }
-            res = ptr.next.data;
-            ptr.next = ptr.next.next;
-            bot = ptr;
-            -- n;
+            else {
+                top = bot = null;
+                -- n;
+            }
+
         }
         return res;
     }
@@ -139,27 +153,38 @@ public class SimpleLinkedList<T> {
             System.out.println("nothing to delete!");
         }
         else {
-            while (data.equals(top.data)) {
-                T x = removeTop();
+            while (top != null && top.data.equals(data)) {
+                if (data.equals(top.data)) {
+                    removeTop();
+                }
+
             }
-            while (data.equals(bot.data)) {
-                T x = removeBot();
+            while (bot != null && bot.data.equals(data)) {
+                if (data.equals(bot.data)) {
+                    removeBot();
+                }
             }
 
             if (isEmpty()) {
                 return;
             }
-
-            Node ptr = top.next;
-            Node pre = top;
-            while (ptr.next != null) {
-                if (ptr.data.equals(data)) {
-                    pre.next = ptr.next;
-                    -- n;
+            else {
+                Node ptr = top.next;
+                Node pre = top;
+                if (ptr == null) {
+                    if (pre.data.equals(data)) removeTop();
+                    return;
                 }
-                pre = pre.next;
-                ptr = ptr.next;
+                while (ptr.next != null) {
+                    if (ptr.data.equals(data)) {
+                        pre.next = ptr.next;
+                        -- n;
+                    }
+                    pre = pre.next;
+                    ptr = ptr.next;
+                }
             }
+
         }
     }
 }
