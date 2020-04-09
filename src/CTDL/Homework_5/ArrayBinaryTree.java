@@ -4,11 +4,13 @@ public class ArrayBinaryTree<E> implements BinaryTreeInterface<E> {
     private E [] array;
     private int n = 0;
     private int defaultsize = 100;
+    private int size = defaultsize;
     public ArrayBinaryTree(){
         array = (E[]) new Object[defaultsize];
     }
 
     public ArrayBinaryTree(int size){
+        this.size = size;
         array = (E[]) new Object[size];
 
     }
@@ -133,4 +135,25 @@ public class ArrayBinaryTree<E> implements BinaryTreeInterface<E> {
         return array[index];
     }
 
+    static final int COUNT = 10;
+
+    private void print2DUtil(int root, int space) {
+        if (root < 0 || root > size || array[root] == null)
+            return;
+
+        space += COUNT;
+
+        print2DUtil(root * 2 + 2, space);
+
+        System.out.print("\n");
+        for (int i = COUNT; i < space; i++)
+            System.out.print(" ");
+        System.out.print(array[root] + "\n");
+
+        print2DUtil(root * 2 + 1, space);
+    }
+
+    public void printTree(int root) {
+        print2DUtil(root, 0);
+    }
 }

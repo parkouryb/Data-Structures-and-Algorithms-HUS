@@ -6,22 +6,24 @@ public class BinaryTreeExample {
 
 
     public static void arrayBinaryTreeExample() throws Exception {
-        ArrayBinaryTree<Integer> abt = new ArrayBinaryTree<Integer>((int) Math.pow(2, 5));
+        ArrayBinaryTree<Integer> trie = new ArrayBinaryTree<Integer>((int) Math.pow(2, 5));
 
-        System.out.println(abt.isEmpty());
-        abt.setRoot(1);
-        abt.setLeft(0, 3);
-        abt.setLeft(1, 4);
-        abt.setLeft(3, 2);
-        abt.setRight(0, 1);
-        abt.setRight(2, 5);
-        abt.setRight(27, 5);
+        System.out.println(trie.isEmpty());
+        trie.setRoot(1);
+        trie.setLeft(0, 3);
+        trie.setLeft(1, 4);
+        trie.setLeft(3, 2);
+        trie.setRight(0, 1);
+        trie.setRight(2, 5);
+        trie.setRight(27, 5);
 
-//        abt.printArray();
-        abt.setLeft(3, 5);
-        abt.printArray();
-        System.out.println(abt.parent(1) + " " + abt.parent(2));
-        System.out.println(abt.left(0) + " " + abt.right(2) + " " + abt.root() + " " + abt.sibling(0) + " " + abt.sibling(1) + " " + abt.sibling(2));
+//        trie.printArray();
+        trie.setLeft(3, 5);
+        trie.printArray();
+        System.out.println(trie.parent(1) + " " + trie.parent(2));
+        System.out.println(trie.left(0) + " " + trie.right(2) + " " + trie.root() + " " + trie.sibling(0) + " " + trie.sibling(1) + " " + trie.sibling(2));
+        
+        trie.printTree(0);
     }
 
     public static void linkedBinaryTreeExample() throws Exception {
@@ -62,8 +64,8 @@ public class BinaryTreeExample {
 
     public static void main(String[] args) throws Exception {
         System.out.println("Homework 5");
-//        arrayBinaryTreeExample();
-        linkedBinaryTreeExample();
+        arrayBinaryTreeExample();
+//        linkedBinaryTreeExample();
 
     }
 

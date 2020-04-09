@@ -142,7 +142,9 @@ public class LinkedBinaryTree<E> implements BinaryTreeInterface {
             return (Node<E>) node.getParent().getLeft();
         }
     }
+
     static final int COUNT = 10;
+
     private void print2DUtil(Node<E> root, int space) {
         if (root == null)
             return;
