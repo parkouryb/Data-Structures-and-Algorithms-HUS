@@ -40,12 +40,14 @@ public class SimpleLinkedList<T> {
         Node ptr;
         if (top == null) {
             top = temp;
+            bot = temp;
         } else {
             ptr = top;
             while (ptr.next != null) {
                 ptr = ptr.next;
             }
             ptr.next = temp;
+            bot = temp;
         }
     }
 
@@ -126,6 +128,7 @@ public class SimpleLinkedList<T> {
             }
             res = ptr.next.data;
             ptr.next = ptr.next.next;
+            bot = ptr;
             -- n;
         }
         return res;
@@ -134,33 +137,28 @@ public class SimpleLinkedList<T> {
     public void remove(T data) {
         if (isEmpty()) {
             System.out.println("nothing to delete!");
-
         }
         else {
-            Node ptr = top;
-            int k = 0;
-            if (data.equals(ptr.data)) {
-                -- n;
-                removeTop();
+            while (data.equals(top.data)) {
+                T x = removeTop();
             }
-            else {
-                if (size() == 2) {
-                    if (ptr.next.data.equals(data)) {
-                        removeBot();
-                    }
+            while (data.equals(bot.data)) {
+                T x = removeBot();
+            }
+
+            if (isEmpty()) {
+                return;
+            }
+
+            Node ptr = top.next;
+            Node pre = top;
+            while (ptr.next != null) {
+                if (ptr.data.equals(data)) {
+                    pre.next = ptr.next;
+                    -- n;
                 }
-                while (ptr.next.next != null) {
-                    if (ptr.next.data.equals(data)) {
-                        Node temp = ptr.next;
-                        temp = ptr.next.next;
-                        ptr.next = temp;
-                        -- n;
-                    }
-                    ptr = ptr.next;
-                }
-                if (ptr.next.data.equals(data)) {
-                    removeBot();
-                }
+                pre = pre.next;
+                ptr = ptr.next;
             }
         }
     }
