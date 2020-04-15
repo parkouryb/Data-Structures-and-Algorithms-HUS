@@ -24,7 +24,7 @@ public class SimpleLinkedListExample{
 
 //        linkedList.set(5, 121);
 //        linkedList.set(1, 1121);
-        
+
         linkedList.display();
         System.out.println("size: " + linkedList.size());
         linkedList.remove(5);
@@ -47,6 +47,6 @@ public class SimpleLinkedListExample{
 //        linkedList.remove(55);
 //        linkedList.display();
 //        System.out.println(" + " + linkedList.size());
-        
+
     }
 }

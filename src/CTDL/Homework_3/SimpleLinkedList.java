@@ -53,7 +53,7 @@ public class SimpleLinkedList<T> {
 
     public T get(int i) {
         if (isEmpty() || i < -1 || i >= size()) return null;
-        
+
         int k = 0;
         Node ptr = top;
         while (ptr != null && k != i) {
@@ -66,7 +66,7 @@ public class SimpleLinkedList<T> {
     public void set(int i, T data) {
         if (isEmpty()) {
             System.out.println("Position is not available");
-        } 
+        }
         else {
             int k = 0;
             Node ptr = top;
