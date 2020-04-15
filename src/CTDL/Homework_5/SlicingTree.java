@@ -95,7 +95,7 @@ public class SlicingTree extends LinkedBinaryTree {
     }
 
     public Rectangle assignTree(Node<Rectangle> p) {
-        if (p.getElement() == null) {
+        if (p == null) {
             return null;
         }
         if (p.getLeft() == null && p.getRight() == null) {
@@ -105,13 +105,39 @@ public class SlicingTree extends LinkedBinaryTree {
         Rectangle p_left = assignTree(p.getLeft());
         Rectangle p_right = assignTree(p.getRight());
 
-        Point p_a = p_left.getA();
-        Point p_b = p_right.getB();
+        if (p_left != null && p_right != null) {
+            Point p_a = p_left.getA();
+            Point p_b = p_right.getA();
 
-        p.getElement().setA(p_a);
-        p.getElement().setB(p_b);
+            boolean flag = false;
+            if (p_a.x > p_b.x) {
+                flag = true;
+            }
+
+            // build width and height of node_rect
+            if (!flag) {
+                p.getElement().setA(p_left.getA());
+                p.getElement().setB(p_right.getB());
+            }
+            else {
+                p.getElement().setA(p_right.getA());
+                p.getElement().setB(p_left.getB());
+            }
+        }
+        else {
+            if (p_left != null) {
+                p.getElement().setA(p_left.getA());
+                p.getElement().setB(p_left.getB());
+            }
+            else {
+                p.getElement().setA(p_right.getA());
+                p.getElement().setB(p_right.getB());
+            }
+        }
+
 
         return p.getElement();
 
     }
+
 }
