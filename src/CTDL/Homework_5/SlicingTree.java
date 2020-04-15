@@ -25,24 +25,6 @@ public class SlicingTree extends LinkedBinaryTree {
         return root;
     }
 
-//    private Node<Rectangle> addLeft(Node<Rectangle> p, Rectangle data) {
-//        if (p.getLeft() != null) {
-//            System.out.println("p.left got element.");
-//            return p.getLeft();
-//        }
-//        p.setLeft(new Node<Rectangle>(data, p, null, null));
-//        return p.getLeft();
-//    }
-//
-//    private Node<Rectangle> addRight(Node<Rectangle> p, Rectangle data) {
-//        if (p.getRight() != null) {
-//            System.out.println("p.right got element.");
-//            return p.getRight();
-//        }
-//        p.setRight(new Node<Rectangle>(data, p, null, null));
-//        return p.getRight();
-//    }
-
     /**
      * Horizontal cut Rectangle
      * cut from (bot, left) -> L(bot + size, left), R(top, left)
@@ -67,6 +49,8 @@ public class SlicingTree extends LinkedBinaryTree {
             );
 
             node.getElement().setId("H");
+//            node.getElement().setA(new Point(0, 0));
+//            node.getElement().setB(new Point(0, 0));
             addLeft(node, node_left_rect);
             ++ n;
             addRight(node, node_right_rect);
@@ -96,6 +80,9 @@ public class SlicingTree extends LinkedBinaryTree {
             );
 
             node.getElement().setId("V");
+//            node.getElement().setA(new Point(0, 0));
+//            node.getElement().setB(new Point(0, 0));
+
             addLeft(node, node_left_rect);
             ++ n;
             addRight(node, node_right_rect);
@@ -105,5 +92,26 @@ public class SlicingTree extends LinkedBinaryTree {
         else {
             System.out.println("Error: Can't do vertical cut");
         }
+    }
+
+    public Rectangle assignTree(Node<Rectangle> p) {
+        if (p.getElement() == null) {
+            return null;
+        }
+        if (p.getLeft() == null && p.getRight() == null) {
+            return p.getElement();
+        }
+
+        Rectangle p_left = assignTree(p.getLeft());
+        Rectangle p_right = assignTree(p.getRight());
+
+        Point p_a = p_left.getA();
+        Point p_b = p_right.getB();
+
+        p.getElement().setA(p_a);
+        p.getElement().setB(p_b);
+
+        return p.getElement();
+
     }
 }

@@ -16,5 +16,7 @@ public class SlicingTreeExample {
 
         // Draw the slicing tree associated with the floor plan.
         slicingTree.printTree(root);
+        slicingTree.assignTree(root);
+        slicingTree.printTree(root);
     }
 }
