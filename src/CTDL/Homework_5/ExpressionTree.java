@@ -40,7 +40,7 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
             System.out.print("(");
         inorder_race(p.getLeft());
         if (p.getElement() == "*" || p.getElement() == "/"
-         || p.getElement() == "+" || p.getElement() == "-")
+                || p.getElement() == "+" || p.getElement() == "-")
             System.out.print(" " + p.getElement() + " ");
         else System.out.print(p.getElement());
         inorder_race(p.getRight());
