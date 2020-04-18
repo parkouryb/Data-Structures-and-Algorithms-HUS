@@ -202,6 +202,9 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
             }
 
         }
+        if (!num.equals("")) {
+            result += "(" + num + ")";
+        }
         while (!stack.empty()) {
             result += stack.pop();
         }

@@ -26,7 +26,7 @@ public class ExpressionTreeExample {
     public static void Exc3() {
         ExpressionTree<String> tree = new ExpressionTree<String>();
 
-        String s = "(6 / 2 + 3) * (7 - 4)";
+        String s = "(1 + 2) * 3 + 4 / 5";
         System.out.println(tree.infix_postfix(s));
 
         LinkedBinaryTree.Node<String> root = tree.constructTree(tree.infix_postfix(s));
