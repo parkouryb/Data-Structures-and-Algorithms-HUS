@@ -94,10 +94,16 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
             }
             else {
                 t = (Node<E>) new Node<String>(Character.toString(charArray[i]), null, null, null);
-                t1 = stack.pop();
-                t2 = stack.pop();
 
+                t1 = stack.pop();
                 t.setRight(t1);
+                if (stack.empty()) {
+                    t2 = (Node<E>) new Node<String>(Integer.toString(0), null, null, null);
+                    t.setLeft(t2);
+                    stack.push(t);
+                    continue;
+                }
+                t2 = stack.pop();
                 t.setLeft(t2);
 
                 stack.push(t);
@@ -149,8 +155,61 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
         return -1;
     }
 
-    public String infix_prefix(String expression) {
+    public String pre_infix(String expression) {
         String result = "";
+        int count = 0;
+        for (int i = 0;i < expression.length();++ i) {
+            char c = expression.charAt(i);
+
+            if ("+*/()[]{}".indexOf(c) != -1) {
+                if (count != 0) {
+                    if (count % 2 == 0) {
+                        result += "+";
+                    }
+                    else {
+                        result += "-";
+                    }
+                    count = 0;
+                }
+                if ("([{".indexOf(c) != -1) {
+                    result += "(";
+                }
+                else {
+                    if (")]}".indexOf(c) != -1) {
+                        result += ")";
+                    }
+                    else {
+                        result += c;
+                    }
+                }
+                continue;
+            }
+
+            if ("0123456789".indexOf(c) != -1) {
+                if (count != 0) {
+                    if (count % 2 == 0) {
+                        result += "+";
+                    }
+                    else {
+                        result += "-";
+                    }
+                    count = 0;
+                }
+                result += c;
+                continue;
+            }
+
+            if (" ".indexOf(c) != -1) {
+                result += c;
+                continue;
+            }
+
+            if ("-".indexOf(c) != -1) {
+                count += 1;
+                continue;
+            }
+
+        }
 
         return result;
     }

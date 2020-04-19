@@ -26,14 +26,17 @@ public class ExpressionTreeExample {
     public static void Exc3() {
         ExpressionTree<String> tree = new ExpressionTree<String>();
 
-        String s = "(1 + 2) * 3 + 4 / 5";
-        System.out.println(tree.infix_postfix(s));
+        String s = "(- (-1 + - - - 2)) * 3 + 4 / 5";
+        String exp = tree.pre_infix(s);
+//        System.out.println(exp);
+//        System.out.println(tree.infix_postfix(exp));
 
-        LinkedBinaryTree.Node<String> root = tree.constructTree(tree.infix_postfix(s));
+        LinkedBinaryTree.Node<String> root = tree.constructTree(tree.infix_postfix(exp));
 
-        tree.inorderPrint(root);
-        tree.preoderPrint(root);
-        tree.postorderPrint(root);
+//        tree.inorderPrint(root);
+//        tree.preoderPrint(root);
+//        tree.postorderPrint(root);
+//        tree.printTree(root);
 
         System.out.println(tree.Evalution_Of_Tree(root));
     }
