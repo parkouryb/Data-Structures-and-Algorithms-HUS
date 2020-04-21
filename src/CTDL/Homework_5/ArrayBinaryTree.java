@@ -26,8 +26,12 @@ public class ArrayBinaryTree<E> implements BinaryTreeInterface<E> {
     public void setRoot(E element) {
         if (array[0] == null) {
             ++ n;
+            array[0] = element;
         }
-        array[0] = element;
+        else {
+            System.out.println("Root is not null");
+        }
+
     }
 
     public void setLeft(int p, E element) throws Exception {

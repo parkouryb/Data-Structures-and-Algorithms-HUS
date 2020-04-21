@@ -26,7 +26,7 @@ public class ExpressionTreeExample {
     public static void Exc3() {
         ExpressionTree<String> tree = new ExpressionTree<String>();
 
-        String s = "(- (-1 + - - - 2)) * 3 + 4 / 5";
+        String s = "((-1 + - - - 2)) * 3 + 4 / 5";
         String exp = tree.pre_infix(s);
 //        System.out.println(exp);
 //        System.out.println(tree.infix_postfix(exp));
