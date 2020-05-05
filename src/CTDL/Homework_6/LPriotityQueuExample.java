@@ -138,10 +138,83 @@ public class LPriotityQueuExample {
         }
     }
 
+    public static void sapq() {
+        SortedArrayPriorityQueue pq = new SortedArrayPriorityQueue();
+        SortedArrayPriorityQueue.ArrEntry value;
+
+        value = new SortedArrayPriorityQueue.ArrEntry("A", 1);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("B", 1);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("B", 3);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("C", 3);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("B", 4);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("B", 0);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("B", 7);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("D", 6);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("F", 1);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("C", 1);
+        pq.insert(value);
+        value = new SortedArrayPriorityQueue.ArrEntry("C", 4);
+        pq.insert(value);
+        pq.insert("C", 6);
+
+        while(!pq.isEmpty()) {
+            System.out.println("Min: " + pq.min().getKey() + " " + pq.min().getValue());
+            Entry result = pq.removeMin();
+            System.out.println("removeMin: " + result.getKey() + " " + result.getValue());
+            System.out.println("");
+        }
+    }
+
+    public static void usapq() {
+        UnsortedArrayPriorityQueue pq = new UnsortedArrayPriorityQueue();
+        UnsortedArrayPriorityQueue.ArrEntry value;
+
+        value = new UnsortedArrayPriorityQueue.ArrEntry("A", 1);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("B", 1);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("B", 3);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("C", 3);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("B", 4);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("B", 0);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("B", 7);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("D", 6);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("F", 1);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("C", 1);
+        pq.insert(value);
+        value = new UnsortedArrayPriorityQueue.ArrEntry("C", 4);
+        pq.insert(value);
+        pq.insert("C", 6);
+
+        while(!pq.isEmpty()) {
+            System.out.println("Min: " + pq.min().getKey() + " " + pq.min().getValue());
+            Entry result = pq.removeMin();
+            System.out.println("removeMin: " + result.getKey() + " " + result.getValue());
+            System.out.println("");
+        }
+    }
+
     public static void main(String[] args) {
+        usapq();
 //        UnsortedExample();
 //        SortedExample();
-        testDot5();
+//        testDot5();
     }
 }
 

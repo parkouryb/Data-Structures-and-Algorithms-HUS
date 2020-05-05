@@ -146,7 +146,6 @@ public class ArrayBinaryTree<E> implements BinaryTreeInterface<E> {
             return;
 
         space += COUNT;
-
         print2DUtil(root * 2 + 2, space);
 
         System.out.print("\n");

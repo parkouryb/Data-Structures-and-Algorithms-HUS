@@ -33,16 +33,22 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
     }
 
     private void inorder_race(Node<E> p) {
+        // mỏ neo
         if (p == null) {
             return;
         }
         if (p.getRight() != null && p.getLeft() != null)
             System.out.print("(");
+
+        //duyệt left
         inorder_race(p.getLeft());
+        // duyệt đến root
         if (p.getElement() == "*" || p.getElement() == "/"
                 || p.getElement() == "+" || p.getElement() == "-")
             System.out.print(" " + p.getElement() + " ");
         else System.out.print(p.getElement());
+
+        // duyệt đến phải
         inorder_race(p.getRight());
         if (p.getRight() != null && p.getLeft() != null)
             System.out.print(")");
@@ -93,6 +99,8 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
                 }
             }
             else {
+                // +-*/
+                // "-(1 + 2) || (-1 + 2) -> 0-(1 + 2) | (0 - 1 + 2)
                 t = (Node<E>) new Node<String>(Character.toString(charArray[i]), null, null, null);
 
                 t1 = stack.pop();
@@ -185,7 +193,7 @@ public class ExpressionTree<E> extends LinkedBinaryTree {
                 continue;
             }
 
-            if ("0123456789".indexOf(c) != -1) {
+            if ("0123456789.".indexOf(c) != -1) {
                 if (count != 0) {
                     if (count % 2 == 0) {
                         result += "+";

@@ -12,6 +12,7 @@ public class BinaryTreeExample {
         trie.setRoot(1);
         trie.setLeft(0, 3);
         trie.setLeft(1, 4);
+        trie.setRight(1, 123);
         trie.setLeft(3, 2);
         trie.setRight(0, 1);
         trie.setRight(2, 5);
