@@ -203,7 +203,7 @@ public class LPriotityQueuExample {
         pq.insert("C", 6);
 
         while(!pq.isEmpty()) {
-            System.out.println("Min: " + pq.min().getKey() + " " + pq.min().getValue());
+            System.out.println("Min: " + pq.min());
             Entry result = pq.removeMin();
             System.out.println("removeMin: " + result.getKey() + " " + result.getValue());
             System.out.println("");

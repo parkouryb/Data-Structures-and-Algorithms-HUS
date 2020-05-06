@@ -22,6 +22,11 @@ public class SortedArrayPriorityQueue <K extends Comparable, E extends Comparabl
         public E getValue() {
             return this.element;
         }
+
+        @Override
+        public String toString() {
+            return getKey().toString() + getValue().toString();
+        }
     }
 
     ArrEntry<K,E> [] array;

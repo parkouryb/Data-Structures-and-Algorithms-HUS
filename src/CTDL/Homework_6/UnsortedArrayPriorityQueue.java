@@ -21,15 +21,23 @@ public class UnsortedArrayPriorityQueue <K extends Comparable, E extends Compara
         public E getValue() {
             return this.element;
         }
-    }
 
-    public UnsortedArrayPriorityQueue() {
-        array = new ArrEntry[defaultsize];
+        @Override
+        public String toString() {
+            return "ArrEntry{" +
+                    "key=" + key +
+                    ", element=" + element +
+                    '}';
+        }
     }
 
     ArrEntry<K,E>[] array;
     int n = 0;
     int defaultsize = 1000000;
+
+    public UnsortedArrayPriorityQueue() {
+        array = new ArrEntry[defaultsize];
+    }
 
     @Override
     public int size() {
@@ -45,16 +53,16 @@ public class UnsortedArrayPriorityQueue <K extends Comparable, E extends Compara
     public void insert(Entry entry) {
         if (n == defaultsize)
             return;
-        n += 1;
         array[n] = new ArrEntry(entry.getKey(), entry.getValue());
+        n += 1;
     }
 
     @Override
     public void insert(Object o, Object o2) {
         if (n == defaultsize)
             return;
-        n += 1;
         array[n] = new ArrEntry(o, o2);
+        n += 1;
     }
 
     @Override
@@ -78,13 +86,13 @@ public class UnsortedArrayPriorityQueue <K extends Comparable, E extends Compara
             array[i] = array[i + 1];
         }
         -- n;
-        return result;
+        return (Entry) result;
     }
 
     @Override
     public Entry min() {
         if (isEmpty()) return null;
-        ArrEntry result = (ArrEntry) array[0];
+        ArrEntry result = array[0];
         for (int i = 1;i < n;++ i) {
             if (array[i].getKey().compareTo(result.getKey()) < 0) {
                 result = array[i];
@@ -95,6 +103,6 @@ public class UnsortedArrayPriorityQueue <K extends Comparable, E extends Compara
                 }
             }
         }
-        return result;
+        return (Entry) result;
     }
 }
