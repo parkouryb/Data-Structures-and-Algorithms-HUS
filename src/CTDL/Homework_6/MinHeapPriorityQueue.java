@@ -93,29 +93,71 @@ public class MinHeapPriorityQueue<K extends Comparable, E extends Comparable>
         while (true) {
             int childIndex = index * 2 + 1;
             int childIndex2 = index * 2 + 2;
+            if (childIndex2 < size()) {
+                int value = heapPQ[childIndex].getKey().compareTo(heapPQ[childIndex2].getKey());
+                if (value != 0) {
+                    if (value > 0) {
+                        int temp = childIndex;
+                        childIndex = childIndex2;
+                        childIndex2 = temp;
+                    }
+                }
+                else {
+                    value = heapPQ[childIndex].getValue().compareTo(heapPQ[childIndex2].getValue());
+                    if (value > 0) {
+                        int temp = childIndex;
+                        childIndex = childIndex2;
+                        childIndex2 = temp;
+                    }
+                }
+            }
             if (childIndex >= size()) break;
             boolean flag = true;
             int bool = heapPQ[index].getKey().compareTo(heapPQ[childIndex].getKey());
-            if (bool > 0) {
-                ArrEntry temp = heapPQ[index];
-                heapPQ[index] = heapPQ[childIndex];
-                heapPQ[childIndex] = temp;
-                index = childIndex;
-                flag = false;
-            }
-            else {
-                if (childIndex2 < size()) {
-                    bool = heapPQ[index].getKey().compareTo(heapPQ[childIndex2].getKey());
-                    if (bool > 0) {
-                        ArrEntry temp = heapPQ[index];
-                        heapPQ[index] = heapPQ[childIndex2];
-                        heapPQ[childIndex2] = temp;
-                        index = childIndex2;
+            if (bool != 0) {
+                if (bool > 0) {
+                    ArrEntry temp = heapPQ[index];
+                    heapPQ[index] = heapPQ[childIndex];
+                    heapPQ[childIndex] = temp;
+                    index = childIndex;
+                }
+                else {
+                    if (childIndex2 < size()) {
+                        bool = heapPQ[index].getKey().compareTo(heapPQ[childIndex2].getKey());
+                        if (bool != 0) {
+                            if (bool > 0) {
+                                ArrEntry temp = heapPQ[index];
+                                heapPQ[index] = heapPQ[childIndex2];
+                                heapPQ[childIndex2] = temp;
+                                index = childIndex2;
+                            }
+                            else break;
+                        }
+                        else {
+                            bool = heapPQ[index].getValue().compareTo(heapPQ[childIndex2].getValue());
+                            if (bool > 0) {
+                                ArrEntry temp = heapPQ[index];
+                                heapPQ[index] = heapPQ[childIndex2];
+                                heapPQ[childIndex2] = temp;
+                                index = childIndex2;
+                            }
+                            else break;
+                        }
                     }
                     else break;
                 }
+            }
+            else {
+                bool = heapPQ[index].getValue().compareTo(heapPQ[childIndex].getValue());
+                if (bool > 0) {
+                    ArrEntry temp = heapPQ[index];
+                    heapPQ[index] = heapPQ[childIndex];
+                    heapPQ[childIndex] = temp;
+                    index = childIndex;
+                }
                 else break;
             }
+
         }
     }
 

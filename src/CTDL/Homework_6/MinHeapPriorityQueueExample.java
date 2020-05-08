@@ -22,9 +22,11 @@ public class MinHeapPriorityQueueExample {
 //        }
 
         while (!pq.isEmpty()) {
-            System.out.println("Top : " + pq.top());
             Entry result = pq.removeTop();
-            System.out.println("result : " + result);
+            pq.printTree(0);
+            System.out.println("");
+            System.out.println("---------------------------------");
+            System.out.println("");
         }
     }
 }

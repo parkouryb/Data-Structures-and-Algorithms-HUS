@@ -211,10 +211,10 @@ public class LPriotityQueuExample {
     }
 
     public static void main(String[] args) {
-        usapq();
+//        usapq();
 //        UnsortedExample();
 //        SortedExample();
-//        testDot5();
+        testDot5();
     }
 }
 
