@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ExpressionAPI">
+    <output-path>$PROJECT_DIR$/out/artifacts/ExpressionAPI</output-path>
+    <root id="archive" name="ExpressionAPI.jar" />
+  </artifact>
+</component>

@@ -44,6 +44,10 @@ public class Main {
         Airplane a = Initialization.createSingleVNAL();
         AirplaneSystem.insert(a.timeStart(), a);
 
+        Airplane b = Initialization.createSingleBB();
+        AirplaneSystem.insert(b.timeStart(), b);
+        System.out.println("E: " + b);
+
         while (!AirplaneSystem.isEmpty()) {
             Entry var = AirplaneSystem.removeTop();
             System.out.println(var);
