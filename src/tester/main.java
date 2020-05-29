@@ -2,40 +2,65 @@
 
 package tester;
 
+import java.util.Scanner;
+
 public class main {
+    public static void main(String[] args) {
 
-    private static int n = 4;
-    static int[] a = new int[11];
-    static boolean[] b = new boolean[11];
-    private static int k = 3;
 
-    public static void sinh(int x) {
-        if (x > k) {
-            print();
-            return;
-        }
-        else {
-            for (int i = 1; i <= n;++ i) {
-                if (b[i]) {
-                    a[x] = i;
-                    b[i] = false;
-                    sinh(x + 1);
-                    b[i] = true;
-                }
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int a[][] = new int [n][n];
+        for ( int i=0; i<a.length;i++){
+            for( int j=0; j<a[0].length;j++){
+                a[i][j]= sc.nextInt();
             }
         }
-    }
-
-    private static void print() {
-        for (int i = 1;i <= k;++ i) {
-            System.out.print(a[i] + " ");
+        giatri(a);
+        maxcot(a);
+        if(cau5(a,3)== true) {
+            System.out.println("yes");
+        }else{
+            System.out.println("no");
         }
-        System.out.println("");
-    }
 
-    public static void main(String[] args) {
-        for (int i = 0;i < 11;++ i)
-            b[i] = true;
-        sinh(1);
+    }
+    public static  void giatri(int a[][]){
+
+
+        for(int i=0; i<a.length; i++){
+            int max= Integer.MIN_VALUE;
+
+            for( int j=0; j<a[0].length;j++){
+                if(max < a[i][j]){
+                    max= a[i][j];
+                }
+
+
+            }
+            System.out.print( max + " ");
+        }
+    }
+    public static void maxcot (int a[][]){
+        for(int j=0; j<a[0].length; j++){
+            int max= Integer.MIN_VALUE;
+            for( int i=0; i<a.length; i++){
+                if( max< a[i][j]){
+                    max= a[i][j];
+                }
+            }
+            System.out.print(max + " ");
+        }
+
+    }
+    public static boolean cau5( int a[][], int k) {
+        k = k - 1;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i][k] > 0) {
+                return false;
+            }
+        }
+        return true;
+
     }
 }
