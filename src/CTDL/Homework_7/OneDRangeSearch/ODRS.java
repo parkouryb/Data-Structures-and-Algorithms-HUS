@@ -55,7 +55,6 @@ public class ODRS<T extends Comparable> extends AVLTree {
             if (keyCompare != 0) {
                 if (keyCompare < 0) {
                     queue.add(currentNode.left);
-                    lowRs = currentNode;
                 }
                 else {
                     queue.add(currentNode.right);
@@ -64,9 +63,11 @@ public class ODRS<T extends Comparable> extends AVLTree {
             else {
                 lowRs = currentNode;
             }
-        }
-        queue.clear();
+            lowRs = currentNode;
 
+        }
+
+        queue.clear();
         queue.add(super.root);
         while(!queue.isEmpty()) {
             Node currentNode = queue.peek();
@@ -79,13 +80,15 @@ public class ODRS<T extends Comparable> extends AVLTree {
                 }
                 else {
                     queue.add(currentNode.right);
-                    highRs = currentNode;
                 }
             }
             else {
                 highRs = currentNode;
             }
+            highRs = currentNode;
+
         }
+//        System.out.println(low + " " + high);
 //        System.out.println(lowRs.data + " " + highRs.data);
 //        System.out.println(super.rank(super.root, lowRs.data) + " " + super.rank(super.root, highRs.data));
 

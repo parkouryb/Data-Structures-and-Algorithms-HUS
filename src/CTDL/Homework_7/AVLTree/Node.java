@@ -26,7 +26,7 @@ public class Node<T extends Comparable> {
     public String toString() {
         return "Node{" +
                 "" + data +
-                "" + rank +
+                ", " + rank +
                 '}';
     }
 }

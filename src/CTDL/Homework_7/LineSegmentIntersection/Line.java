@@ -4,14 +4,14 @@ package CTDL.Homework_7.LineSegmentIntersection;
 
 public class Line {
     public int id = 0;
-    public Point p1 = null, p2 = null;
+    public Point point = null, point1 = null;
 
     public Line() {
     }
 
-    public Line(int id, Point p1, Point p2) {
+    public Line(int id, Point point, Point point1) {
         this.id = id;
-        this.p1 = p1;
-        this.p2 = p2;
+        this.point = point;
+        this.point1 = point1;
     }
 }
