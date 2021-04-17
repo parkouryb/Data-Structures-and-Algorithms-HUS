@@ -14,11 +14,7 @@ package CTDL.Homework_7.AVLTree;
 // keys(T1) < key(x) < keys(T2) < key(y) < keys(T3)
 // So BST property is not violated anywhere.
 
-import CTDL.Homework_5.LinkedBinaryTree;
-
-import javax.swing.*;
-
-public class AVLTree<T extends Comparable> {
+public class AVLTree<T extends Comparable, K extends Comparable> {
     public Node root;
     public int n = 0;
 
@@ -237,5 +233,27 @@ public class AVLTree<T extends Comparable> {
 
     public void printTree() {
         print2DUtil(this.root, 0);
+    }
+
+    public T search(T x) {
+        try {
+            System.out.println(root + " " + x.compareTo(root.data));
+            if (x.compareTo(root.data) == 0) { //basis step
+                System.out.println("Item found!");
+                return (T) root.data;
+            }
+            else {
+                if (x.compareTo(root.data) < 0) {
+                    root = root.left;
+                    return search(x);//recursive call
+                } else {
+                    root = root.right;
+                    return search(x);//recursive call
+                }
+            }
+        } catch (NullPointerException e) {
+            System.out.println ("Search failed!");
+            return null;
+        }
     }
 }
