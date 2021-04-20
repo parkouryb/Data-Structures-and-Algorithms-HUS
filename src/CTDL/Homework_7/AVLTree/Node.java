@@ -5,9 +5,9 @@ package CTDL.Homework_7.AVLTree;
 public class Node<T extends Comparable> {
     public T data = null;
     public int height;
-    public int rank = 0;
     public Node left, right, parent;
 
+    // hàm khởi tạo
     public Node(Node parent) {
         left = null;
         right = null;
@@ -15,9 +15,11 @@ public class Node<T extends Comparable> {
     }
 
     public Node(Node parent, T data) {
+        // ham khoi tao nay truyen vao node cha, va gia tri data
+        // luu tru tai node
+
         this.data = data;
         this.height = 1;
-        this.rank = 1;
         left = right = null;
         this.parent = parent;
     }
@@ -26,7 +28,6 @@ public class Node<T extends Comparable> {
     public String toString() {
         return "Node{" +
                 "" + data +
-                ", " + rank +
                 '}';
     }
 }

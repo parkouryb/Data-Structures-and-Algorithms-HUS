@@ -3,6 +3,9 @@
 package CTDL.Homework_7.AVLTree;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AVLTreeExample {
     private static String fileName = "D:\\iTech\\Data-Structures-and-Algorithms-HUS" +
@@ -20,9 +23,6 @@ public class AVLTreeExample {
         }
         assert fr != null;
         BufferedReader br = new BufferedReader(fr);
-
-
-
         try {
             br.close();
             fr.close();
@@ -68,7 +68,6 @@ public class AVLTreeExample {
         assert writer != null;
         BufferedWriter buffer = new BufferedWriter(writer);
         try {
-            System.out.println("?");
             buffer.write(x.toString());
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,20 +81,47 @@ public class AVLTreeExample {
     }
 
     public static void main(String[] args) {
-        AVLTree<Ticket, Integer> ticketAVLTree = new AVLTree<>();
-        ticketAVLTree.addNode(new Ticket(1, "cot 1"));
-        ticketAVLTree.addNode(new Ticket(2, "cot 1"));
-        ticketAVLTree.addNode(new Ticket(3, "cot 1"));
-        ticketAVLTree.addNode(new Ticket(5, "cot 1"));
-        ticketAVLTree.addNode(new Ticket(0, "cot 1"));
-        ticketAVLTree.addNode(new Ticket(4, "cot 1"));
+        AVLTree<Ticket> ticketAVLTree = new AVLTree<>();
+        Queue<String> places = new LinkedList<>();
+        places.add("cot 1");
+        places.add("cot 2");
+        places.add("cot 3");
+        places.add("cot 4");
+        places.add("cot 5");
 
-//        ticketAVLTree.printTree();
+        {
+            String place = places.remove();
+            ticketAVLTree.addNode(new Ticket(1, place, "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+        }
+        {
+            String place = places.remove();
+            ticketAVLTree.addNode(new Ticket(2, place, "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+        }
 
-        Integer x = readFile();
-        System.out.println(x);
-        WriteFile(ticketAVLTree.search(new Ticket(x)));
-//        Ticket res = ticketAVLTree.search(new Ticket(3, ""));
+        System.out.println(places.size());
+
+//        ticketAVLTree.addNode(new Ticket(3, "cot 341", "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+//        ticketAVLTree.addNode(new Ticket(5, "cot 231", "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+//        ticketAVLTree.addNode(new Ticket(0, "cot 545", "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+//        ticketAVLTree.addNode(new Ticket(88, "cot 999", "21-xxxx", "12312312", "04/02/2000", "ha trung hieu", "0915xxxxxx", "phuong nga", "0999xxxxxxx", "tp ho chi minh", "27/09/2001"));
+
+        ticketAVLTree.printTree();
+        {
+            Ticket x = ticketAVLTree.search(ticketAVLTree.root, new Ticket(1));
+            ticketAVLTree.delNode(new Ticket(1));
+            places.add(x.getDiadiem());
+        }
+
+        System.out.println(places.size());
+        ticketAVLTree.printTree();
+
+//        Integer x = readFile();
+//        System.out.println(x);
+//        WriteFile(ticketAVLTree.search(ticketAVLTree.root, new Ticket(x)));
+//
+//        Ticket res = ticketAVLTree.search(ticketAVLTree.root, new Ticket(3));
 //        System.out.println(res);
+//
+//        System.out.println(ticketAVLTree.n);
     }
 }

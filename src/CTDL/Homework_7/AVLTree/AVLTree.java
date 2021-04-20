@@ -14,29 +14,24 @@ package CTDL.Homework_7.AVLTree;
 // keys(T1) < key(x) < keys(T2) < key(y) < keys(T3)
 // So BST property is not violated anywhere.
 
-public class AVLTree<T extends Comparable, K extends Comparable> {
-    public Node root;
-    public int n = 0;
+public class AVLTree<T extends Comparable> {
+    // <T extends Comparable> kieu generic
+    // cái này nghĩa là T kế thừa thằng comparable
+    // thằng comparable là 1 cái interface
+    // có phương thức compareTo so sánh với
+    // trả về các giá trị -1, 0, 1 nếu
+    // -1 là thằng gốc nhỏ hơn thằng được so sánh
+    // 0 là thằng gốc = thằng so sánh
+    // 1 là thằng gốc lớn hơn thằng được so sánh
+    // compareTo là phương thức so sánh giữa 2 đối tượng
 
-    protected int height(Node node) {
+    public Node root; // nut goc
+    public int n = 0; // dai dien cho so phan tu trong cay
+
+    protected int height(Node node) { // ham height truyen vao 1 node de lay chieu cao cua node day
         if (node == null)
             return 0;
         return node.height;
-    }
-
-    private int size(Node node) {
-        if (node == null) return 0;
-        return node.rank;
-    }
-
-    protected int rank(Node current, T data) {
-        if (current == null)
-            return 0;
-
-        int keyCompare = data.compareTo(current.data);
-        if (keyCompare < 0) return rank(current.left, data);
-        else if (keyCompare > 0) return 1 + size(current.left) + rank(current.right, data);
-        else return size(current.left);
     }
 
     // This function uses to right rotate subtree rooted with y
@@ -44,16 +39,12 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         Node x = (y.left == null) ? new Node(y) : y.left;
         Node T2 = x.right;
 
-        int rankT1 = (x.left != null) ? x.left.rank : 0;
-        int rankT3 = (y.right != null) ? y.right.rank : 0;
-
         x.right = y;
         x.parent = parentY;
         y.parent = x;
-        x.rank = x.rank + 1 + rankT3;
-        y.rank = y.rank - 1 - rankT1;
+
         y.left = T2;
-        if (T2 != null)
+        if (T2 != null) // neu t2 khac null thi t2.parent = y
             T2.parent = y;
 
         y.height = Math.max(height(y.left), height(y.right)) + 1;
@@ -67,15 +58,11 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         Node y = (x.right == null) ? new Node(x) : x.right;
         Node T2 = y.left;
 
-        int rankT1 = (x.left != null) ? x.left.rank : 0;
-        int rankT3 = (y.right != null) ? y.right.rank : 0;
-
         y.left = x;
         y.parent = parentX;
         x.parent = y;
-        y.rank = y.rank + 1 + rankT1;
-        x.rank = x.rank - 1 - rankT3;
         x.right = T2;
+
         if (T2 != null)
             T2.parent = x;
 
@@ -85,7 +72,7 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         return y;
     }
 
-    private int getBalance(Node node) {
+    private int getBalance(Node node) { //
         if (node == null)
             return 0;
         return (height(node.left) - height(node.right));
@@ -105,12 +92,9 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         else // Duplicate data is not allowed
             return node;
 
+        // cập nhật chiều cao của node, cây con
         node.height = 1 + Math.max(height(node.left)
                                  , height(node.right));
-
-        int rankLeft = (node.left != null) ? node.left.rank : 0;
-        int rankRight = (node.right != null) ? node.right.rank : 0;
-        node.rank = rankLeft + rankRight + 1;
 
         int balance = getBalance(node);
 
@@ -157,12 +141,16 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         else if (keyCompare > 0)
             node.right = delete(node.right, node, data);
         else {
+            // tim duoc node cần xóa
             if (node.left == null || node.right == null) {
+                // trường hợp node cần xóa có
+                // 1 cây con ở bên trái hoặc bên phải
                 Node temp = null;
                 temp = (node.left == null) ? node.right : node.left;
 
-                node = (temp == null) ? null : temp;
+                node = temp;
             } else {
+                // trường hợp mà node cần xóa có cả 2 con trái và phải
                 Node temp = minValueNode(node.right);
                 node.data = temp.data;
                 node.right = delete(node.right, node, (T) temp.data);
@@ -174,10 +162,6 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
 
         node.height = 1 + Math.max(height(node.left)
                 , height(node.right));
-
-        int rankLeft = (node.left != null) ? node.left.rank : 0;
-        int rankRight = (node.right != null) ? node.right.rank : 0;
-        node.rank = rankLeft + rankRight + 1;
 
         int balance = getBalance(node);
 
@@ -202,7 +186,13 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
     }
 
     public void addNode(T data) {
+        if (n == 500) {
+            System.out.println("bai gui xe het cho");
+            return;
+        }
+        // thủ tục thêm 1 node mới vào với giá trị là data
         if (this.root == null) {
+            // cái if này
             this.root = new Node(null, data);
             this.root.parent = null;
             n += 1;
@@ -235,20 +225,26 @@ public class AVLTree<T extends Comparable, K extends Comparable> {
         print2DUtil(this.root, 0);
     }
 
-    public T search(T x) {
+    public T search(Node temp, T x) {
+        // ham nay tra ve node trong cay neu tim duoc
+        // con neu k tim duoc tra ve null
         try {
-            System.out.println(root + " " + x.compareTo(root.data));
-            if (x.compareTo(root.data) == 0) { //basis step
+            // try catch để bắt ngoại lệ
+            if (x.compareTo(temp.data) == 0) {
+                // tim thay node co cung gia tri, tuc la tim thay ket qua
                 System.out.println("Item found!");
-                return (T) root.data;
+                return (T) temp.data;
             }
             else {
-                if (x.compareTo(root.data) < 0) {
-                    root = root.left;
-                    return search(x);//recursive call
+                if (x.compareTo(temp.data) < 0) {
+                    // neu gia tri can tim nho hon thang node dang xet
+                    // thi minh can den node ben trai
+                    temp = temp.left;
+                    return search(temp, x);//recursive call
                 } else {
-                    root = root.right;
-                    return search(x);//recursive call
+                    // tuong tu thang left nma day la lon hon
+                    temp = temp.right;
+                    return search(temp, x);//recursive call
                 }
             }
         } catch (NullPointerException e) {

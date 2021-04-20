@@ -1,12 +1,18 @@
 package CTDL.Homework_7.AVLTree;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 public class Ticket implements Comparable {
     private Integer ticketID;
-    private String place;
+    private String diadiem;
+    private String biensoxe;
+    private String masoxe;
+    private String ngaygiodoxe;
+    private String hotennguoigui;
+    private String sodienthoainguoigui;
+    private String hotenbaove;
+    private String sodienthoaibaove;
+    private String diachibaove;
+    private String ngaysinhbaove;
+    private String url; // duong dan den hinh anh luu lai
 
     public Ticket() {
     }
@@ -15,9 +21,18 @@ public class Ticket implements Comparable {
         this.ticketID = ticketID;
     }
 
-    public Ticket(Integer ticketID, String place) {
+    public Ticket(Integer ticketID, String diadiem, String biensoxe, String masoxe, String ngaygiodoxe, String hotennguoigui, String sodienthoainguoigui, String hotenbaove, String sodienthoaibaove, String diachibaove, String ngaysinhbaove) {
         this.ticketID = ticketID;
-        this.place = place;
+        this.diadiem = diadiem;
+        this.biensoxe = biensoxe;
+        this.masoxe = masoxe;
+        this.ngaygiodoxe = ngaygiodoxe;
+        this.hotennguoigui = hotennguoigui;
+        this.sodienthoainguoigui = sodienthoainguoigui;
+        this.hotenbaove = hotenbaove;
+        this.sodienthoaibaove = sodienthoaibaove;
+        this.diachibaove = diachibaove;
+        this.ngaysinhbaove = ngaysinhbaove;
     }
 
     public Integer getTicketID() {
@@ -28,12 +43,92 @@ public class Ticket implements Comparable {
         this.ticketID = ticketID;
     }
 
-    public String getPlace() {
-        return place;
+    public String getDiadiem() {
+        return diadiem;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
+    public void setDiadiem(String diadiem) {
+        this.diadiem = diadiem;
+    }
+
+    public String getBiensoxe() {
+        return biensoxe;
+    }
+
+    public void setBiensoxe(String biensoxe) {
+        this.biensoxe = biensoxe;
+    }
+
+    public String getMasoxe() {
+        return masoxe;
+    }
+
+    public void setMasoxe(String masoxe) {
+        this.masoxe = masoxe;
+    }
+
+    public String getNgaygiodoxe() {
+        return ngaygiodoxe;
+    }
+
+    public void setNgaygiodoxe(String ngaygiodoxe) {
+        this.ngaygiodoxe = ngaygiodoxe;
+    }
+
+    public String getHotennguoigui() {
+        return hotennguoigui;
+    }
+
+    public void setHotennguoigui(String hotennguoigui) {
+        this.hotennguoigui = hotennguoigui;
+    }
+
+    public String getSodienthoainguoigui() {
+        return sodienthoainguoigui;
+    }
+
+    public void setSodienthoainguoigui(String sodienthoainguoigui) {
+        this.sodienthoainguoigui = sodienthoainguoigui;
+    }
+
+    public String getHotenbaove() {
+        return hotenbaove;
+    }
+
+    public void setHotenbaove(String hotenbaove) {
+        this.hotenbaove = hotenbaove;
+    }
+
+    public String getSodienthoaibaove() {
+        return sodienthoaibaove;
+    }
+
+    public void setSodienthoaibaove(String sodienthoaibaove) {
+        this.sodienthoaibaove = sodienthoaibaove;
+    }
+
+    public String getDiachibaove() {
+        return diachibaove;
+    }
+
+    public void setDiachibaove(String diachibaove) {
+        this.diachibaove = diachibaove;
+    }
+
+    public String getNgaysinhbaove() {
+        return ngaysinhbaove;
+    }
+
+    public void setNgaysinhbaove(String ngaysinhbaove) {
+        this.ngaysinhbaove = ngaysinhbaove;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -50,7 +145,7 @@ public class Ticket implements Comparable {
     public String toString() {
         return "Ticket{" +
                 "ticketID=" + ticketID +
-                ", place='" + place + '\'' +
+                ", diadiem=" + diadiem +
                 '}';
     }
 }
